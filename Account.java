@@ -33,7 +33,7 @@ public class Account {
 		if (userNumber >= 1 && userNumber <= 9) {
 			gotoMenu();
 		} else {
-			System.out.println("Invalid entry");
+			System.out.println("Invalid entry.");
 		}
 	}
 

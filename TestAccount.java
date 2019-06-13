@@ -1,0 +1,9 @@
+package AtmMachine;
+
+import java.util.Scanner;
+
+public class TestAccount {
+	public static void main(String[] args) {
+		Account users = new Account();
+	}
+}

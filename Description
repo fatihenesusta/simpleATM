@@ -1,0 +1,4 @@
+The purpose of this do a simple test about a bank system.
+Firstly, you need to enter a number between 0 and 9 in order to open your account.
+Secondly, after enter a valid account number, your account will have 100$ in it's balance.
+Thirdly, you can check your balance, deposit, or withdraw money through following the commands on the screen.

@@ -44,7 +44,7 @@ public class Account {
 		System.out.println("Enter a choice");
 		int userChoice = input.nextInt();
 		if (userChoice == 1) {
-			System.out.println("Your balance is: " + getBalance() + "$);
+			System.out.println("Your balance is: " + getBalance() + "$");
 			System.out.println("---------------");
 			gotoMenu();
 		}

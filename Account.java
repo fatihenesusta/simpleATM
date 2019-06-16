@@ -5,28 +5,33 @@ import java.util.Scanner;
 
 public class Account {
 	private static int userNumber;
-	private int id = 0;
-	private double balance = 100;
-
-	private Date dateCreated;
+	private double initialBalance = 100;
+	private double[] accounts;
 	Scanner input = new Scanner(System.in);
 
 	public Account() {
-		dateCreated = new Date();
-		balance();
 		System.out.println("Enter your identification number: ");
 		userNumber = input.nextInt();
+		accounts = new double[10];
+		accounts(initialBalance);
 		checkLogin(userNumber);
+		balance(accounts, userNumber);
+
 	}
 
-	private double[] balance() {
-		userNumber = 0;
-		double[] account = new double[9];
-		for (int i = 0; i < 9; i++) {
-			userNumber = i;
-			account[i] = 100;
+	private void accounts(double initialBalance2) {
+		for (int i = 0; i < accounts.length; i++) {
+			accounts[i] = 100;
 		}
-		return account;
+	}
+
+	private void balance(double[] accounts2, int userNumber) {
+		for (int i = userNumber; i < accounts2.length; i++) {
+			if (userNumber == i) {
+				System.out.println(accounts2[i]);
+			}
+		}
+
 	}
 
 	public void checkLogin(int userNumber) {
@@ -40,12 +45,15 @@ public class Account {
 	private void gotoMenu() {
 		System.out.println();
 		System.out.println("Welcome to the Main Menu\n" + "---------------\n" + "Press (1) to check balance\n"
-				+ "Press (2) for widthdraw menu\n" + "Press (3) for deposit menu\n" + "Press (4) to exit\n");
+				+ "Press (2) for widthdraw menu\n" + "Press (3) for deposit menu\n" + "Press (4) to exit\n"
+				+ "Press (5) to change user\n");
 		System.out.println("Enter a choice");
 		int userChoice = input.nextInt();
 		if (userChoice == 1) {
-			System.out.println("Your balance is: " + getBalance() + "$");
-			System.out.println("---------------");
+			System.out.print("Your balance is: ");
+			balance(accounts, userNumber);
+			System.out.print(" $");
+			System.out.println("\n---------------");
 			gotoMenu();
 		}
 
@@ -53,9 +61,11 @@ public class Account {
 			System.out.println();
 			System.out.println("Please enter the amount: ");
 			double withdrawAmount = input.nextDouble();
-			withdraw(withdrawAmount);
+			withdraw(withdrawAmount, userNumber);
 			System.out.println("---------------");
-			System.out.println("Your balance is " + getBalance() + "$");
+			System.out.println("Your balance is: ");
+			balance(accounts, userNumber);
+			System.out.print(" $");
 			gotoMenu();
 		}
 
@@ -63,21 +73,35 @@ public class Account {
 			System.out.println();
 			System.out.println("Please enter the amount: ");
 			double depositAmount = input.nextDouble();
-			deposit(depositAmount);
+			deposit(depositAmount, userNumber);
 			System.out.println("---------------");
-			System.out.println("Your balance is: " + getBalance() + "$");
+			System.out.println("Your balance is: ");
+			balance(accounts, userNumber);
+			System.out.print(" $");
 			gotoMenu();
 		}
 
 		if (userChoice == 4) {
 			System.out.println();
 			System.out.println("---------------");
-			System.out.println("Your balance is " + getBalance() + "$");
+			System.out.println("Your balance is: ");
+			balance(accounts, userNumber);
+			System.out.print(" $");
 			System.out.println("Exiting the bank operation...");
 			System.exit(0);
 		}
-		
-		if (userChoice > 4) {
+
+		if (userChoice == 5) {
+			System.out.println();
+			System.out.println("---------------");
+			System.out.println("Changing user...");
+			System.out.println("Enter your user identification number: ");
+			userNumber = input.nextInt();
+			checkLogin(userNumber);
+			balance(accounts, userNumber);
+		}
+
+		if (userChoice > 5) {
 			System.out.println();
 			System.out.println("Invalid number entrance, returning to the main menu.");
 			System.out.println("---------------");
@@ -85,45 +109,18 @@ public class Account {
 		}
 	}
 
-	public Account(double balance) {
-		this.balance = balance;
-	}
+	private void deposit(double depositAmount, int userNumber2) {
+		for (int i = userNumber2; i <= userNumber2; i++) {
+			accounts[i] += depositAmount;
 
-	public double[] account(int userNumber) {
-		userNumber = 0;
-		double[] account = new double[9];
-		for (int i = 0; i < 9; i++) {
-			userNumber = i;
-			account[i] = 100;
 		}
-		return account;
+
 	}
 
-	public int getId() {
-		return id;
-	}
+	private void withdraw(double withdrawAmount, int userNumber2) {
+		for (int i = userNumber2; i <= userNumber2; i++) {
+			accounts[i] -= withdrawAmount;
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-
-	public String getDate() {
-		return dateCreated.toString();
-	}
-
-	public void withdraw(double w) {
-		this.balance -= w;
-	}
-
-	public void deposit(double d) {
-		this.balance += d;
+		}
 	}
 }

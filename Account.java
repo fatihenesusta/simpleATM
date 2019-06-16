@@ -28,7 +28,7 @@ public class Account {
 	private void balance(double[] accounts2, int userNumber) {
 		for (int i = userNumber; i < accounts2.length; i++) {
 			if (userNumber == i) {
-				System.out.println(accounts2[i]);
+				System.out.println(accounts2[i] + " $");
 			}
 		}
 
@@ -52,7 +52,6 @@ public class Account {
 		if (userChoice == 1) {
 			System.out.print("Your balance is: ");
 			balance(accounts, userNumber);
-			System.out.print(" $");
 			System.out.println("\n---------------");
 			gotoMenu();
 		}
@@ -65,7 +64,6 @@ public class Account {
 			System.out.println("---------------");
 			System.out.println("Your balance is: ");
 			balance(accounts, userNumber);
-			System.out.print(" $");
 			gotoMenu();
 		}
 
@@ -86,7 +84,6 @@ public class Account {
 			System.out.println("---------------");
 			System.out.println("Your balance is: ");
 			balance(accounts, userNumber);
-			System.out.print(" $");
 			System.out.println("Exiting the bank operation...");
 			System.exit(0);
 		}
